@@ -1,0 +1,4 @@
+node_modules
+*.tgz
+app.js
+botfile.json
