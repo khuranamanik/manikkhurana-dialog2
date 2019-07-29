@@ -40,7 +40,7 @@ var corsOptionsDelegate = function (req, callback) {
   var corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response  
   callback(null, corsOptions); // callback expects two parameters: error and options  
 };  
-router.options("*" cors(corsOptionsDelegate))
+router.options("*", cors(corsOptionsDelegate))
 //write router.post and router.get queries as needed here
 router.use(function(req,res,next)  
 {  
@@ -50,7 +50,7 @@ router.use(function(req,res,next)
 const port = 3000  
 app.use(router)  
 app.listen(port, () => {  
-  console.log(`Running on http://localhost:${port}`)  
+  console.log("Running on http://localhost:${port}")  
 });
 ```
 - Now you have to require the json file that has all the credentials stored in it. (the one you downloaded when you make a project on Google Cloud Platform after agent creation in Google Dialogflow)
