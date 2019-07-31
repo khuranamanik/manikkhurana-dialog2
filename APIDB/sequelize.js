@@ -6,13 +6,11 @@ const EntityModel = require('./models/Entity')
 const ContextModel = require('./models/Context')
 const KnowledgeBaseModel = require('./models/KnowledgeBase')
 const DocumentModel = require('./models/Document')
-const AdminModel = require('./models/admins');
 
-
-//check username and password 
-const sequelize = new Sequelize('DialogflowDB', 'root', 'arpan', { 
+const sequelize = new Sequelize('DialogflowAPI', 'root', '123456', { 
   host: 'localhost',
   dialect: 'mysql',
+  logging: false,
   pool: {
     max: 10,
     min: 0,
@@ -28,13 +26,47 @@ const Entity = EntityModel(sequelize, Sequelize)
 const Context = ContextModel(sequelize, Sequelize)
 const KnowledgeBase = KnowledgeBaseModel(sequelize, Sequelize)
 const Document = DocumentModel(sequelize, Sequelize)
-const Admin = AdminModel(sequelize,Sequelize);
+
+
 Agent.hasMany(Intent, {
     foreignKey: {
       name: 'projectId',
       allowNull: false
     }
   })
+//   Agent.beforeCreate((Agent, options) => {
+
+//     return bcrypt.hash(Agent.password, 10)
+//         .then(hash => {
+//             Agent.password = hash;
+//         })
+//         .catch(err => { 
+//             throw new Error(); 
+//         });
+// });
+
+// Agent.beforeCreate((Agent, options) => {
+
+//   return bcrypt.hash(Agent.private_key, 10)
+//       .then(hash => {
+//           Agent.private_key= hash;
+//       })
+//       .catch(err => { 
+//           throw new Error(); 
+//       });
+// });
+
+// Agent.beforeCreate((Agent, options) => {
+
+//   return bcrypt.hash(Agent.client_email, 10)
+//       .then(hash => {
+//           Agent.client_email = hash;
+//       })
+//       .catch(err => { 
+//           throw new Error(); 
+//       });
+// });
+
 
   Agent.hasMany(Entity, {
     foreignKey: {
@@ -86,7 +118,7 @@ Agent.hasMany(Intent, {
 
 sequelize.sync()
   .then(() => {
-    console.log('Database & tables created!')
+    console.log('\nDatabase & tables created!\n')
   })
 
 module.exports = {
@@ -96,7 +128,5 @@ module.exports = {
   Entity,
   Context,
   KnowledgeBase,
-  Document,
-  // DetectIntent,
-  Admin
+  Document
 }

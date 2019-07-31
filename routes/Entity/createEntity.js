@@ -50,10 +50,11 @@ const sessionId = uuid.v4();
   );// Create a new session
   console.log('Created entity type:');
   console.log(response);
- 
+  console.log(response);
+  console.log(response);
     const responses = response[0].name;
     const separate = responses.split ('/');
-    const newObject = {'EntityId': separate[4],"projectId":seperate[1],"entityTypeName":responses[0].displayName,"kind":responses[0].kind};
+    const newObject = {'EntityId': separate[4],"projectId":separate[1],"entityTypeName":responses[0].displayName,"kind":responses[0].kind};
     Entity.create(newObject);
   })
 }  

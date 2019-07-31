@@ -16,14 +16,15 @@ async function createIntent(req,res)
   // console.log(decodedValue);
   // console.log("My token is",req.token);
 
-  const token = req.token;
-  const decoded = jwt_Decode(token);
+  // const token = req.token;
+  // const decoded = jwt_Decode(token);
   
   //const projectId = decoded.split (',');
-  const projectId = decoded.project_id;
-  console.log("decoded is",decoded);
-  console.log("My project Id is",projectId);
-  console.log("Direct is",decoded.project_id);
+  const projectId = credentials.project_id
+  //decoded.project_id;
+  // console.log("decoded is",decoded);
+  // console.log("My project Id is",projectId);
+  // console.log("Direct is",projectId);
 
   const dialogflow = require('dialogflow');
   text = req.body.displayName;

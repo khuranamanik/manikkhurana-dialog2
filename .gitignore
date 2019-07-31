@@ -1,7 +1,8 @@
 node_modules
-*.tgz
-app.js
-botfile.json
+index.js
+*.txt
+index2.js
+
 # Logs
 logs
 *.log

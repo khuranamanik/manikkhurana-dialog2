@@ -1,7 +1,7 @@
 module.exports = (sequelize, type) => {
     return sequelize.define('Entity', {
         entityId: {
-          type: type.UUID,
+          type: type.STRING(255),
           primaryKey: true,
           unique:true
 
@@ -11,7 +11,7 @@ module.exports = (sequelize, type) => {
         //   },
 
         entityValue:{
-            type : type.STRING //ARRAY?
+            type : type.STRING(255) //ARRAY?
         },
 
         // Synonyms: {
@@ -45,9 +45,9 @@ module.exports = (sequelize, type) => {
         //   type : type.STRING
         // },
         
-        // Kind:{
-        //     type : type.STRING
-        //   },
+        Kind:{
+            type : type.STRING
+          },
 
           // SessionId: {
           //   type: type.UUID,

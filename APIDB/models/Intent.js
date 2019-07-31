@@ -18,8 +18,9 @@ module.exports = (sequelize, type) => {
           }
         
         },
-        displayName:{
-          type : type.STRING
+        intentName:{
+          type : type.STRING,
+          allowNull: false
         },
         
         // TrainingPharsesParts: {

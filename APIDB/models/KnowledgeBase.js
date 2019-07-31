@@ -5,9 +5,6 @@ module.exports = (sequelize, type) => {
           primaryKey: true,
           unique:true
         },
-        
-        
-
         projectId: {
           type: type.STRING,
           primaryKey: false,
@@ -20,11 +17,11 @@ module.exports = (sequelize, type) => {
           },
         
         },
-        displayName:{
+        knowledgeBaseName:{
           type : type.STRING
         },
 
-        knowledgeBaseFullName: {
+        knowledgeBaseValue: {
           type : type.STRING,
         },
         

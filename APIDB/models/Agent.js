@@ -3,31 +3,48 @@ module.exports = (sequelize, type) => {
       projectId: {
         type: type.STRING,
         primaryKey: true,
-        autoIncrement: false,
-        unique: true,
       },
-        
-        displayName:{
+        agentName:{
           type : type.STRING
         },
-        email: {
-          type: type.STRING(255),
-          field: 'email',
-          allowNull: false,
-          unique: true
+      //   email: {
+      //     type: typeRING(255),
+      //     field: 'email',
+      //     allowNull: false,
+      //     unique: true,
+      //     validate: {
+      //       isEmail: true, 
+      //       notEmpty: true,
+      //       len: [8, 255]
+      //   },
+      // },
+        // password: {
+        //   type: type.STRING(255),
+        //   field: 'password',
+        //   allowNull: false,
+        //   validate: {
+        //     len: {
+        //         args: 8,
+        //         msg: "Name must be atleast 3 characters in length"
+        //     },
+        //   },
+        // },
+        // roletype: {
+        //   type: type.STRING(255),
+        //   field: 'roletype',
+        //   allowNull: false
+        // },
+
+        private_key: {
+        type: type.TEXT,
+        field: 'private_key',
+        allowNull: false
         },
-        password: {
+
+        client_email: {
           type: type.STRING(255),
-          field: 'password',
+          field: 'client_email',
           allowNull: false
         },
-        roletype: {
-          type: type.STRING(255),
-          field: 'roletype',
-          allowNull: false
-        },
-
-
-    })
-
+      })
 }
