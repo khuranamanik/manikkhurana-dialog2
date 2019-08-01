@@ -22,8 +22,7 @@ function credfunc(req, res, next) {
       }
       else{
       next()
-      }
-      //console.log(req.credentials);  
+      } 
     });
   }
 

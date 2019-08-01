@@ -1,6 +1,6 @@
 {
   "name": "manikkhurana-dialog2",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "This is the first demo of the Project",
   "main": "routes/index.js",
   "scripts": {

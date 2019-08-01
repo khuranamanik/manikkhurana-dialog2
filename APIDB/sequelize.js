@@ -1,3 +1,6 @@
+const sqlDBname = process.env.sqlDBname
+const sqluname = process.env.sqluname
+const sqlpassword = process.env.sqlpassword
 const Sequelize = require('sequelize')
 const AgentModel = require('./models/Agent')
 const IntentModel = require('./models/Intent')
@@ -7,7 +10,7 @@ const ContextModel = require('./models/Context')
 const KnowledgeBaseModel = require('./models/KnowledgeBase')
 const DocumentModel = require('./models/Document')
 
-const sequelize = new Sequelize('DialogflowAPI', 'root', '123456', { 
+const sequelize = new Sequelize(sqlDBname, sqluname, sqlpassword, { 
   host: 'localhost',
   dialect: 'mysql',
   logging: false,
@@ -18,56 +21,20 @@ const sequelize = new Sequelize('DialogflowAPI', 'root', '123456', {
     idle: 10000
   }
 })
+  Agent = AgentModel(sequelize, Sequelize)
+  Intent = IntentModel(sequelize, Sequelize)
+  EntityType = EntityTypeModel(sequelize, Sequelize)
+  Entity = EntityModel(sequelize, Sequelize)
+  Context = ContextModel(sequelize, Sequelize)
+  KnowledgeBase = KnowledgeBaseModel(sequelize, Sequelize)
+  Document = DocumentModel(sequelize, Sequelize)
 
-const Agent = AgentModel(sequelize, Sequelize)
-const Intent = IntentModel(sequelize, Sequelize)
-const EntityType = EntityTypeModel(sequelize, Sequelize)
-const Entity = EntityModel(sequelize, Sequelize)
-const Context = ContextModel(sequelize, Sequelize)
-const KnowledgeBase = KnowledgeBaseModel(sequelize, Sequelize)
-const Document = DocumentModel(sequelize, Sequelize)
-
-
-Agent.hasMany(Intent, {
+  Agent.hasMany(Intent, {
     foreignKey: {
       name: 'projectId',
       allowNull: false
     }
   })
-//   Agent.beforeCreate((Agent, options) => {
-
-//     return bcrypt.hash(Agent.password, 10)
-//         .then(hash => {
-//             Agent.password = hash;
-//         })
-//         .catch(err => { 
-//             throw new Error(); 
-//         });
-// });
-
-// Agent.beforeCreate((Agent, options) => {
-
-//   return bcrypt.hash(Agent.private_key, 10)
-//       .then(hash => {
-//           Agent.private_key= hash;
-//       })
-//       .catch(err => { 
-//           throw new Error(); 
-//       });
-// });
-
-// Agent.beforeCreate((Agent, options) => {
-
-//   return bcrypt.hash(Agent.client_email, 10)
-//       .then(hash => {
-//           Agent.client_email = hash;
-//       })
-//       .catch(err => { 
-//           throw new Error(); 
-//       });
-// });
-
-
   Agent.hasMany(Entity, {
     foreignKey: {
       name: 'projectId',
@@ -114,12 +81,10 @@ Agent.hasMany(Intent, {
     }
   })
 
-  
-
-sequelize.sync()
-  .then(() => {
-    console.log('\nDatabase & tables created!\n')
-  })
+  sequelize.sync()
+    .then(() => {
+      console.log('\nDatabase & tables created!\n')
+    })
 
 module.exports = {
   Agent,
