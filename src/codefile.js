@@ -200,7 +200,7 @@ async function deleteKnowledgeBase(req,res)
         knowledgeBaseName : req.body.knowledgeBaseName
       },
     }).then(async function(results) {
-      
+      // console.log(results)
     knowledgeBaseValue = results[0].knowledgeBaseValue;
     const client = new dialogflow.v2beta1.KnowledgeBasesClient(req.credentials.config,req.credentials.project_id);
     const [result] = await client.deleteKnowledgeBase({

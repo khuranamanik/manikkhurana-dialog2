@@ -1,0 +1,33 @@
+How to publish NPM Package?
+## Specific to this project - https://www.npmjs.com/package/
+
+Step 0: Identify Routes and the basic flow of code.The entire game is played by the "package.json" file
+Step 1: Identify the part that goes in the NPM Package and the part that classifies as the "App-Level Code"
+Step 2: App-level code includes codes like the one in which we setup our server, our authetication, passage of all types of credentials, etc.
+Step 3: The Basic step starts with deleting what's specific to the application, eg. admins.js model
+Step 4: The major change - the credentials were sent to the APIs as a part of the token as a payload using JWT. This qualifies as App-level code as the programmer should have a choice how he/she wants to send the credentials. 
+Step 5: The entire API code was copied and merged into a single file - /src/codefile.js
+Step 6: The flow of code was thus changed in a way that the programmer will have to first hit the /createAgentEntry API to be able to send the Dialogflow Credentials in the request body to the SQL Table created using Sequelize. 
+Step 7: Then I made the "agent-Name" as the fetch-key that helps you to fetch the project_id, private_key, client_email and send them to the APIs so that they can do the required actions on Dialogflow and send you an appropriate response both on console and as response body.  
+Step 8: Making this as the fetch-key (or simply, a type of foreign key) required making changes everywhere including the Models. 
+Step 9: So now if someone wants to use the NPM Package they can use it by just making an index.js file (for App-Level code)
+Step 10: For all requests the programmer now has to specify the "agent-Name" in the request-body. This agent-Name will help the NPM Package fetch the credentials from the DB (that were stored after Step 5)
+Step 11: Once our full working code is ready, we simply have to make 
+	1. A git repository
+	2. An Account on www.npmjs.com
+Step 12: Open Terminal and run "npm login"
+Step 13: Make sure you login successfully. 
+Step 14: Specify a ".gitignore" file. This file works as athe primary ignore file for both NPM and GIT. Specify, node_modules, index.js and *.tgz (generated after "npm pack" command)
+Step 15: Now your NPM Package code is ready to be "published"
+Step 16: Open Terminal, run "npm pack". You will now be able to see what all files you have told NPM to include in your Package. 
+Step 17: If you want to remove any file, go to the ".gitignore" file and mention it there
+Step 18: Run "npm pack" again. If you feel everything's ready, "npm publish". 
+Step 19: Your npm Package is published.
+
+
+
+Tips:
+- The name and version in the 'package.json' file is the name and version of your NPM Package
+- Always do "npm pack" to be sure. Although you can directly publish by "npm publish"
+- Do not enable 2FA on NPMJS. Requires OTP (One Time Password) every time you want to Publish any changes 
+
